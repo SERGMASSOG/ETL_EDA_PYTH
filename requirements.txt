@@ -1,0 +1,34 @@
+# Análisis de datos
+pandas>=1.3.0
+numpy>=1.20.0
+scipy>=1.7.0
+
+# Visualización
+matplotlib>=3.4.0
+seaborn>=0.11.0
+plotly>=5.0.0
+
+# Procesamiento y ETL
+openpyxl>=3.0.7
+xlrd>=2.0.1
+pandas-profiling>=3.1.0
+
+# Machine Learning
+scikit-learn>=0.24.0
+imbalanced-learn>=0.8.0
+
+# Jupyter
+jupyter>=1.0.0
+ipykernel>=6.0.0
+
+# Utilidades
+tqdm>=4.61.0
+python-dotenv>=0.19.0
+
+# Manejo de datos
+dask>=2021.6.0
+pyarrow>=6.0.0
+
+# Testing
+pytest>=6.2.0
+pytest-cov>=2.12.0
