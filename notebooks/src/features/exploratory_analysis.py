@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from pathlib import Path
-from pandas_profiling import ProfileReport
+from ydata_profiling import ProfileReport
 import plotly.express as px
 from typing import Dict, List, Optional
 import logging
@@ -33,7 +33,7 @@ class ExploratoryDataAnalysis:
         self.data: Dict[str, pd.DataFrame] = {}
         
         # Configuración de estilos
-        plt.style.use('seaborn')
+        plt.style.use('ggplot')
         sns.set_theme(style="whitegrid")
     
     def _create_directories(self):
@@ -63,7 +63,7 @@ class ExploratoryDataAnalysis:
             elif file_path.suffix == '.csv':
                 df = pd.read_csv(file_path)
             elif file_path.suffix in ['.xlsx', '.xls']:
-                df = pd.read_excel(file_path)
+                df = pd.read_excel(file_path, engine="openpyxl")
             else:
                 raise ValueError(f"Formato de archivo no soportado: {file_path.suffix}")
             
@@ -386,11 +386,17 @@ class ExploratoryDataAnalysis:
 
 
 if __name__ == "__main__":
-    # Ejemplo de uso
-    eda = ExploratoryDataAnalysis()
+    # Ruta al archivo que mencionaste
+    archivo = r"C:\Users\masso\OneDrive\Escritorio\UNIVERSIDAD LOS ANDES\Python\Analisis exploatorio_1\notebooks\src\Data\processed\datos_proyecto_modulo4_20251013_181724.xlsx"
     
-    # Cargar datos
-    eda.load_data()
+    # Crear instancia del análisis exploratorio
+    eda = ExploratoryDataAnalysis(
+        data_dir=os.path.dirname(archivo),  # Usamos el directorio del archivo
+        reports_dir='../../reports'  # O cambia esto si prefieres otro lugar
+    )
     
-    # Ejecutar análisis completo
-    eda.run_analysis()
+    # Cargar archivo específico
+    eda.load_data(file_path=archivo)
+    
+    # Ejecutar análisis
+    eda.run_analysis(output_prefix='modulo4')
